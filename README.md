@@ -1,5 +1,6 @@
 # J1059
 
-5regions_spectra_ref is the most updated file. The limits of integration for calculating the equivalent widths are drawn from the velocity profiles.
+globalfunc.py : contains the global functions that are used across all ipynb files.
+improved_spec.ipynb : has the detailed analysis
 
-5regions_spectra is the previous file which searches for the minima about the absorption lines manually.
+last update: rlines.txt,glines.txt,tlines.txt added
