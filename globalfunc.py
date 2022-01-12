@@ -300,8 +300,8 @@ def ew_calc(wave, flux, err, absline):
 # --------------------------------------------------------------------
 def cold_prof2(absline,f,norm_data,region,co=None): #specify absorption line| f-value| data| region(blue/red)| color
     #f-values from Donald C. Morton 10.1086/377639
-    od = np.log(1/norm_data.value)
-    N_a = 3.768e14 * od / (absline[1] * f) / u.cm / u.cm / u.km * u.s
+    od = np.log(1/norm_data.value) #optical depth
+    N_a = 3.768e14 * od / (absline[1] * f) / u.cm / u.cm / u.km * u.s #
     vel = (nwavelength.value - absline[1])/(absline[1])* c.c.to(u.km/u.s)
     # indx = lines_to_measure.index(absline)
     
@@ -375,3 +375,24 @@ def cold_prof2(absline,f,norm_data,region,co=None): #specify absorption line| f-
     plt.ylim(9,)
     plt.legend()
 # ------------------------------------------------------------------
+
+# --------------------------------------------------------------------
+#                       Optical Depth Comparison
+# --------------------------------------------------------------------
+xvals = np.linspace(-1500,1500,106) * u.km/u.s
+
+'''
+we don't want to lose any data, and 106 points is around the upper limit 
+in the (-1500,1500) range so it is easier to map data for all ionization 
+lines to the same x-axis.
+'''
+def abslines_od(absline,norm_data,mask=None): # mask tuple of (min,max)
+    od = np.log(1/norm_data.value)
+    yinterp = np.interp(xvals, velo(absline), od)
+    if mask==None:
+        return yinterp
+    else:
+        window = (xvals.value<mask[0]) | (xvals.value>mask[1])
+        masked_arr = np.where(window, yinterp, np.nan)
+        
+        return masked_arr
