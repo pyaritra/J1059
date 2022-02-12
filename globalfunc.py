@@ -21,7 +21,7 @@ plt.rc("font", **{"family": "sans-serif", "serif": ["Arial"]})
 plt.rc("xtick", labelsize=fontsize)
 plt.rc("ytick", labelsize=fontsize)
 
-files = ("J1059_tworegionspectra.dat","J1059_tworegions_norm.dat")
+files = ("J1059_tworegions_norm_old.dat","J1059_tworegions_norm.dat")
 title = ('Blue region','Red region')
 ap0color = "red"
 ap1color = "blue"
@@ -30,7 +30,9 @@ col = (ap0color,ap1color)
 rlines = OrderedDict(eval((open('rlines.txt','r')).read()))
 glines = OrderedDict(eval((open('glines.txt','r')).read()))
 tlines = OrderedDict(eval((open('tlines.txt','r')).read()))
-
+newlines = OrderedDict()
+for i in ascii.read('J1059_newlinelist.txt'):
+    newlines["%s"%i[1]] = i[0]
 norm_data = ascii.read(files[1])
 nwavelength = norm_data["restwave"] * u.angstrom
 bnorm = norm_data["bluenorm"] * u.erg / u.s / u.cm ** 2 / u.angstrom
