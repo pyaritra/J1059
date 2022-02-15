@@ -8,5 +8,5 @@ improved_spec.ipynb : has the detailed analysis
 separate file for newlines list ,/ multi gaussian model for blended lines ,/
 
 ### In process 
-incorporating the errors in the fitted models and combining them to subplots.
+incorporating the errors in the fitted models
               
