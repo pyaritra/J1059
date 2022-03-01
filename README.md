@@ -5,7 +5,7 @@ globalfunc.py : contains the global functions that are used across all ipynb fil
 improved_spec.ipynb : has the detailed analysis
 
 ### Last update
-separate file for newlines list ,/ multi gaussian model for blended lines ,/
+New model and plots showing individual components of the blended lines
 
 ### In process 
 incorporating the errors in the fitted models
